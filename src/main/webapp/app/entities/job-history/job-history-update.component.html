@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-job-history-heading" jhiTranslate="recruitApp.jobHistory.home.createOrEditLabel">Create or edit a Job History</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!jobHistory.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="jobHistory.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="recruitApp.jobHistory.startDate" for="field_startDate">Start Date</label>
+                    <div class="d-flex">
+                        <input id="field_startDate" type="datetime-local" class="form-control" name="startDate" [(ngModel)]="startDate"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="recruitApp.jobHistory.endDate" for="field_endDate">End Date</label>
+                    <div class="d-flex">
+                        <input id="field_endDate" type="datetime-local" class="form-control" name="endDate" [(ngModel)]="endDate"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="recruitApp.jobHistory.language" for="field_language">Language</label>
+                    <select class="form-control" name="language" [(ngModel)]="jobHistory.language" id="field_language" >
+                        <option value="FRENCH">{{'recruitApp.Language.FRENCH' | translate}}</option>
+                        <option value="ENGLISH">{{'recruitApp.Language.ENGLISH' | translate}}</option>
+                        <option value="SPANISH">{{'recruitApp.Language.SPANISH' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="recruitApp.jobHistory.job" for="field_job">Job</label>
+                    <select class="form-control" id="field_job" name="job" [(ngModel)]="jobHistory.job">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="jobOption.id === jobHistory.job?.id ? jobHistory.job : jobOption" *ngFor="let jobOption of jobs; trackBy: trackJobById">{{jobOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="recruitApp.jobHistory.department" for="field_department">Department</label>
+                    <select class="form-control" id="field_department" name="department" [(ngModel)]="jobHistory.department">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="departmentOption.id === jobHistory.department?.id ? jobHistory.department : departmentOption" *ngFor="let departmentOption of departments; trackBy: trackDepartmentById">{{departmentOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="recruitApp.jobHistory.employee" for="field_employee">Employee</label>
+                    <select class="form-control" id="field_employee" name="employee" [(ngModel)]="jobHistory.employee">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="employeeOption.id === jobHistory.employee?.id ? jobHistory.employee : employeeOption" *ngFor="let employeeOption of employees; trackBy: trackEmployeeById">{{employeeOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

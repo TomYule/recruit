@@ -1,0 +1,26 @@
+
+{
+    "recruitApp": {
+        "location" : {
+            "home": {
+                "title": "Locations",
+                "createLabel": "创建新 Location",
+                "createOrEditLabel": "创建或编辑 Location"
+            },
+            "created": "Location {{ param }} 创建成功",
+            "updated": "Location {{ param }} 更新成功",
+            "deleted": "Location {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Location {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Location"
+            },
+            "streetAddress": "Street Address",
+            "postalCode": "Postal Code",
+            "city": "City",
+            "stateProvince": "State Province",
+            "country": "Country"
+        }
+    }
+}
